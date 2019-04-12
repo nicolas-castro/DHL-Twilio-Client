@@ -1,25 +1,51 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Switch, Route } from 'react-router-dom';
+
+import Signup from './components/auth/signup';
+import AuthService from './components/auth/auth-service';
+
 import './App.css';
 
+
+
+
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = { loggedInUser: null };
+    this.service = new AuthService();
+  }
+
+  fetchUser(){
+    if( this.state.loggedInUser === null ){
+      this.service.loggedin()
+      .then(response =>{
+        this.setState({
+          loggedInUser:  response
+        }) 
+      })
+      .catch( err =>{
+        this.setState({
+          loggedInUser:  false
+        }) 
+      })
+    }
+  }
+
+  getTheUser= (userObj) => {                  
+    this.setState({
+      loggedInUser: userObj
+    })
+  }
+
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <Switch>
+          <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/>
+      </Switch>
+      
       </div>
     );
   }
