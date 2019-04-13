@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-
 import Signup from './components/auth/signup';
 import AuthService from './components/auth/auth-service';
-
+import Login from './components/auth/Login';
 import './App.css';
+import Navbar from './components/navbar/NavBar';
 
 
 
@@ -42,8 +42,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      <Navbar/>
       <Switch>
           <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/>
+          <Route exact path='/login' render={() => <Login getUser={this.getTheUser}/>}/>
       </Switch>
       
       </div>
