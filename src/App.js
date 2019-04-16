@@ -5,6 +5,7 @@ import AuthService from './components/auth/auth-service';
 import Login from './components/auth/Login';
 import './App.css';
 import Navbar from './components/navbar/NavBar';
+import CreateProfile from './components/CreateProfile';
 
 
 
@@ -48,6 +49,7 @@ class App extends Component {
           <Switch>
               <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/>
               <Route exact path='/login' render={() => <Login getUser={this.getTheUser}/>}/>
+              <Route exact path='/profile/create' render={() => <CreateProfile getUser={this.getTheUser}/>}/>
           </Switch>  
         </div>
       );

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+
+
 
 class Login extends Component {
   constructor(props){
@@ -15,7 +18,10 @@ class Login extends Component {
     this.service.login(username, password)
     .then( response => {
         this.setState({ username: "", password: "" });
-        this.props.getUser(response)
+        this.props.getUser(response);
+
+        // <Redirect to='/profile/create'/>
+       
     })
     .catch( error => console.log(error) )
   }

@@ -50,12 +50,16 @@ class Navbar extends Component {
 
             <div id="navbarBasicExample" className={ this.state.isActive ? 'navbar-menu is-active' : 'navbar-menu'}>
               <div className="navbar-start">
-                <Link className="navbar-item" to='/' >Home</Link>
+                <Link className="navbar-item" to='/' >
+                <span className="icon">
+                  <i className="fas fa-home"></i>
+                </span>Home
+                </Link>
                 <div className="navbar-item has-dropdown is-hoverable">
                 <Link className="navbar-link" to='/' >More</Link>
                   <div className="navbar-dropdown">
-                  <Link className="navbar-item" to='/' >About</Link>
-                  <Link className="navbar-item" to='/' >Jobs</Link>           
+                  <Link className="navbar-item" to='/' >My Profile</Link>
+                  <Link className="navbar-item" to='/' >Edit Profile</Link>           
                   </div>
                 </div>
               </div>
@@ -87,12 +91,16 @@ class Navbar extends Component {
 
          <div id="navbarBasicExample" className={ this.state.isActive ? 'navbar-menu is-active' : 'navbar-menu'}>
               <div className="navbar-start">
-                <Link className="navbar-item" to='/' >Home</Link>
+                <Link className="navbar-item" to='/' >
+                <span className="icon">
+                  <i className="fas fa-home"></i>
+                </span>Home
+                </Link>
                 <div className="navbar-item has-dropdown is-hoverable">
                 <Link className="navbar-link" to='/' >More</Link>
                   <div className="navbar-dropdown ">
-                  <Link className="navbar-item" to='/' >About</Link>
-                  <Link className="navbar-item" to='/' >Jobs</Link>           
+                  <Link className="navbar-item" to='/' >My Profile</Link>
+                  <Link className="navbar-item" to='/' >Edit Profile</Link>           
                   </div>
                 </div>
               </div>
