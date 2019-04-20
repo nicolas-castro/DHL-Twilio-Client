@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom';
 class Login extends Component {
   constructor(props){
     super(props);
-    this.state = { username: '', password: '' };
+    this.state = { username: '', password: '', loggedInUser: null };
     this.service = new AuthService();
   }
 
@@ -17,11 +17,8 @@ class Login extends Component {
     const { username, password } = this.state;
     this.service.login(username, password)
     .then( response => {
-        this.setState({ username: "", password: "" });
-        this.props.getUser(response);
-
-        // <Redirect to='/profile/create'/>
-       
+        this.setState({ username: "", password: "", loggedInUser: true });
+        this.props.getUser(response);       
     })
     .catch( error => console.log(error) )
   }
@@ -32,6 +29,9 @@ class Login extends Component {
   }
     
   render(){
+    if(this.state.loggedInUser){
+      return <Redirect to='/profile/create'/>
+    }
     return(
       <div className="columns is-mobile is-centered" style={{ marginTop: '20px' }}>
         <form onSubmit={this.handleFormSubmit}>     
@@ -71,22 +71,6 @@ class Login extends Component {
         </form>
         
       </div>
-
-
-
-      // <div>
-      //   <form onSubmit={this.handleFormSubmit}>
-      //     <label>Username:</label>
-      //     <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
-      //     <label>Password:</label>
-      //     <textarea name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
-          
-      //     <input type="submit" value="Login" />
-      //   </form>
-      //   <p>Don't have account? 
-      //       <Link to={"/signup"}> Signup</Link>
-      //   </p>
-      // </div>
     )
   }
 }

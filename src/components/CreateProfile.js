@@ -45,9 +45,11 @@ class CreateProfile extends Component {
         e.preventDefault();
         
         service.saveNewProfile(this.state)
+
         .then(res => {
             console.log('added: ', res);
             // here you would redirect to some other page 
+            this.setState({campus: "", coarse: "", imageUrl: "",});
         })
         .catch(err => {
             console.log("Error while adding the profile: ", err);
