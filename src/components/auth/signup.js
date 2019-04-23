@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AuthService from './auth-service';
+import AuthService from './Auth-service';
 import { Link } from 'react-router-dom'; 
 
 
@@ -34,7 +34,7 @@ class Signup extends Component {
       <div>
         <form onSubmit={this.handleFormSubmit}>
           <label>Username:</label>
-          <input type="email" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
+          <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
           
           <label>Password:</label>
           <input type="password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
