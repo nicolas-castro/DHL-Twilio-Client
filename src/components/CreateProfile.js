@@ -8,8 +8,8 @@ class CreateProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          campus: "",
-          coarse: "",
+          iata: "",
+          address: "",
           imageUrl: "",
           owner: "",
         };
@@ -49,7 +49,7 @@ class CreateProfile extends Component {
         .then(res => {
             console.log('added: ', res);
             // here you would redirect to some other page 
-            this.setState({campus: "", coarse: "", imageUrl: "",});
+            this.setState({iata: "", address: "", imageUrl: "",});
         })
         .catch(err => {
             console.log("Error while adding the profile: ", err);
@@ -61,17 +61,17 @@ class CreateProfile extends Component {
           <div>
             <h2>New Profile</h2>
             <form onSubmit={e => this.handleSubmit(e)}>
-                <label>Campus</label>
+                <label>IATA</label>
                 <input 
                     type="text" 
-                    name="campus" 
-                    value={ this.state.campus } 
+                    name="iata" 
+                    value={ this.state.iata } 
                     onChange={ e => this.handleChange(e)} />
-                <label>Coarse</label>
+                <label>Address</label>
                 <textarea 
                     type="text" 
-                    name="coarse" 
-                    value={ this.state.coarse } 
+                    name="address" 
+                    value={ this.state.address } 
                     onChange={ e => this.handleChange(e)} />
                 <input 
                     type="file" 
