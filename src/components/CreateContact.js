@@ -2,14 +2,15 @@
 import React, { Component } from "react";
 
 // import the service file since we need it to send (and get) the data to(from) server
-import service from '../components/api/service';
+import service from './api/service';
 
-class CreateProfile extends Component {
+class CreateContact extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          iata: "",
-          address: "",
+          firstName: "",
+          lastName: "",
+          cellNumber:"",
           imageUrl: "",
           owner: "",
         };
@@ -44,43 +45,50 @@ class CreateProfile extends Component {
     handleSubmit = e => {
         e.preventDefault();
         
-        service.saveNewProfile(this.state)
+        service.saveNewContact(this.state)
 
         .then(res => {
             console.log('added: ', res);
             // here you would redirect to some other page 
-            this.setState({iata: "", address: "", imageUrl: "",});
+            this.setState({firstName: "", lastName: "", cellNumber: "",imageUrl: "",});
         })
         .catch(err => {
-            console.log("Error while adding the profile: ", err);
+            console.log("Error while adding contact: ", err);
         });
     }  
     
     render() {
         return (
           <div>
-            <h2>New Profile</h2>
+            <h2>New Contact</h2>
             <form onSubmit={e => this.handleSubmit(e)}>
-                <label>IATA</label>
+                <label>First Name</label>
                 <input 
                     type="text" 
-                    name="iata" 
-                    value={ this.state.iata } 
+                    name="firstName" 
+                    value={ this.state.firstName } 
                     onChange={ e => this.handleChange(e)} />
-                <label>Address</label>
-                <textarea 
+                <label>Last Name</label>
+                <input 
                     type="text" 
-                    name="address" 
-                    value={ this.state.address } 
+                    name="lastName" 
+                    value={ this.state.lastName } 
                     onChange={ e => this.handleChange(e)} />
+                <label>Cell Number</label>
+                <input 
+                    type="tel" 
+                    name="cellNumber" 
+                    value={ this.state.cellNumber } 
+                    onChange={ e => this.handleChange(e)} />
+                <label>Picture</label>
                 <input 
                     type="file" 
                     onChange={(e) => this.handleFileUpload(e)} /> 
-                <button type="submit">Save new Profile</button>
+                <button type="submit">Save new Contact</button>
             </form>
           </div>
         );
     }
 }
 
-export default CreateProfile;
+export default CreateContact;

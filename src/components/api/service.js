@@ -20,9 +20,9 @@ export default {
       .catch(errorHandler);
   },
 
-  saveNewProfile(newProfile) {
-    console.log('new profile is: ', newProfile)
-    return service.post('/profile/create', newProfile, {withCredentials:true})
+  saveNewContact(newContact) {
+    console.log('new contact is: ', newContact)
+    return service.post('/contacts/create', newContact, {withCredentials:true})
       .then(res => res.data)
       .catch(errorHandler);
   }

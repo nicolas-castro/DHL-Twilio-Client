@@ -58,7 +58,7 @@ class Navbar extends Component {
                 <div className="navbar-item has-dropdown is-hoverable">
                 <Link className="navbar-link" to='/' >More</Link>
                   <div className="navbar-dropdown">
-                  <Link className="navbar-item" to='/' >My Profile</Link>
+                  <Link className="navbar-item" to='/contacts' >My Contacts</Link>
                   <Link className="navbar-item" to='/' >Edit Profile</Link>           
                   </div>
                 </div>
@@ -99,7 +99,7 @@ class Navbar extends Component {
                 <div className="navbar-item has-dropdown is-hoverable">
                 <Link className="navbar-link" to='/' >More</Link>
                   <div className="navbar-dropdown ">
-                  <Link className="navbar-item" to='/' >My Profile</Link>
+                  <Link className="navbar-item" to='/contacts' >My Contacts</Link>
                   <Link className="navbar-item" to='/' >Edit Profile</Link>           
                   </div>
                 </div>

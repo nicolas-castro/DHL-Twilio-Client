@@ -5,10 +5,8 @@ import AuthService from './components/auth/Auth-service';
 import Login from './components/auth/Login';
 import './App.css';
 import Navbar from './components/navbar/NavBar';
-import CreateProfile from './components/CreateProfile';
-
-
-
+import CreateContact from './components/CreateContact';
+import InteractiveList from './components/Contacts';
 
 class App extends Component {
   constructor(props){
@@ -45,11 +43,12 @@ class App extends Component {
     if(this.state.loggedInUser){
       return (
         <div className="App">
-          <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser}/>
+          <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser}/>  
           <Switch>
               <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/>
               <Route exact path='/login' render={() => <Login getUser={this.getTheUser}/>}/>
-              <Route exact path='/profile/create' render={() => <CreateProfile getUser={this.getTheUser}/>}/>
+              <Route exact path='/contacts/create' render={() => <CreateContact getUser={this.getTheUser}/>}/>
+              <Route exact path='/contacts' render={() => <InteractiveList Component={CreateContact} getUser={this.getTheUser}/>}/>
           </Switch>  
         </div>
       );
