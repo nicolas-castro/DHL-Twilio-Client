@@ -5,7 +5,7 @@ import AuthService from './components/auth/Auth-service';
 import Login from './components/auth/Login';
 import './App.css';
 import Navbar from './components/navbar/NavBar';
-import CreateContact from './components/CreateContact';
+import CreateContact from './components/contact-form/CreateContact';
 import InteractiveList from './components/Contacts';
 
 class App extends Component {
