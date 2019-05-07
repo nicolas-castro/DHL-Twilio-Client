@@ -30,66 +30,68 @@ export class Confirm extends Component {
         <React.Fragment>
         <Grid 
           container
-          direction="column"
+          // direction="column"
           justify="center"
           alignItems="center"
           >
+            <Grid item xs={4}>
             <Typography variant="h6" color="textPrimary">
               Verify Contact Information
             </Typography>
-          <List>
-            <ListItem>
-            <ListItemText
-            primary="Add Photo"
-            style={{paddingRight: 30}}
-            />
-            <ListItemSecondaryAction>
-            <input accept="image/*" 
-            id="icon-button-file" 
-            type="file" 
-            style={{display:'none'}}
-            defaultValue={values.imageUrl}
-            onChange={(e) => handleFileUpload(e)}
-            />
-              <label 
-              htmlFor="icon-button-file"
-              >
-                <IconButton 
-                color="primary" 
-                component="span"
-                >
-                  <PhotoCamera />
-                </IconButton>
-              </label>
+              <List>
+                <ListItem>
+                <ListItemText
+                primary="Add Photo"
+                // style={{paddingRight: 30}}
+                />
+                <ListItemSecondaryAction>
+                <input accept="image/*" 
+                id="icon-button-file" 
+                type="file" 
+                style={{display:'none'}}
+                defaultValue={values.imageUrl}
+                onChange={(e) => handleFileUpload(e)}
+                />
+                  <label 
+                  htmlFor="icon-button-file"
+                  >
+                    <IconButton 
+                    color="primary" 
+                    component="span"
+                    >
+                      <PhotoCamera />
+                    </IconButton>
+                  </label>
 
-            </ListItemSecondaryAction>
+                </ListItemSecondaryAction>
 
-            </ListItem>
-            <ListItem 
-              primaryText='First Name'
-              secondaryText={ values.firstName }
-            />
-            <ListItem 
-              primaryText="Last Name"
-              secondaryText={ values.lastName }
-            />
-            <ListItem 
-              primaryText="Cell Number"
-              secondaryText={ values.cellNumber }
-            />
-          </List>
-          <RaisedButton 
-              label="Save Contact"
-              primary={true}
-              style={styles.button}
-              onClick={this.save}
-              />
-            <RaisedButton 
-              label="Back"
-              primary={false}
-              style={styles.button}
-              onClick={this.back}
-              />
+                </ListItem>
+                <ListItem 
+                  primaryText='First Name'
+                  secondaryText={ values.firstName }
+                />
+                <ListItem 
+                  primaryText="Last Name"
+                  secondaryText={ values.lastName }
+                />
+                <ListItem 
+                  primaryText="Cell Number"
+                  secondaryText={ values.cellNumber }
+                />
+              </List>
+              <RaisedButton 
+                  label="Save Contact"
+                  primary={true}
+                  style={styles.button}
+                  onClick={this.save}
+                  />
+                <RaisedButton 
+                  label="Back"
+                  primary={false}
+                  style={styles.button}
+                  onClick={this.back}
+                  />
+          </Grid>
           </Grid>
         </React.Fragment>
       </MuiThemeProvider>

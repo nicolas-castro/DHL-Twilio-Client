@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 class Signup extends Component {
   constructor(props){
     super(props);
-    this.state = { username: '', password: '' };
+    this.state = { username: '', password: '', message: null };
     this.service = new AuthService();
   }
 
@@ -22,7 +22,12 @@ class Signup extends Component {
         });
         this.props.getUser(response)
     })
-    .catch( error => console.log(error) )
+    .catch(err => {
+      if (err.response && err.response.data) {
+        // console.error("API response", err.response.data)
+        return  this.setState({ message: err.response.data.message }) 
+      }
+    });
   }
   
   handleChange = (event) => {  
@@ -45,7 +50,7 @@ class Signup extends Component {
         <p>Already have account? 
             <Link to={"/login"}> Login</Link>
         </p>
-  
+        { this.state.message && <div> { this.state.message } </div> }
       </div>
     )
   }

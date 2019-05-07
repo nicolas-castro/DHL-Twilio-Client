@@ -13,7 +13,7 @@ class CreateContact extends Component {
           step: 1,
           firstName: "",
           lastName: "",
-          cellNumber:"",
+          cellNumber: "",
           imageUrl: "",
           owner: "",
         };
@@ -37,7 +37,9 @@ class CreateContact extends Component {
         this.setState({[input]: e.target.value});
     }
 
-
+    handlePhoneChange = input => e => {
+        this.setState({[input]: "+1" + e.target.value});
+    }
 
     // this method handles just the file upload
     handleFileUpload = e => {
@@ -88,6 +90,7 @@ class CreateContact extends Component {
                         nextStep={this.nextStep}
                         handleChange={this.handleChange}
                         handleFileUpload={this.handleFileUpload}
+                        handlePhoneChange={this.handlePhoneChange}
                         values={values}
                     />
             );
@@ -109,30 +112,3 @@ class CreateContact extends Component {
 
 export default CreateContact;
 
-// eslint-disable-next-line no-lone-blocks
-{/* <h2>New Contact</h2>
-            <form onSubmit={e => this.handleSubmit(e)}>
-                <label>First Name</label>
-                <input 
-                    type="text" 
-                    name="firstName" 
-                    value={ this.state.firstName } 
-                    onChange={ e => this.handleChange(e)} />
-                <label>Last Name</label>
-                <input 
-                    type="text" 
-                    name="lastName" 
-                    value={ this.state.lastName } 
-                    onChange={ e => this.handleChange(e)} />
-                <label>Cell Number</label>
-                <input 
-                    type="tel" 
-                    name="cellNumber" 
-                    value={ this.state.cellNumber } 
-                    onChange={ e => this.handleChange(e)} />
-                <label>Picture</label>
-                <input 
-                    type="file" 
-                    onChange={(e) => this.handleFileUpload(e)} /> 
-                <button type="submit">Save new Contact</button>
-            </form> */}

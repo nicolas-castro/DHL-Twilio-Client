@@ -1,107 +1,78 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import React, { Component } from 'react'
+import axios from 'axios';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import OpenIconSpeedDial from './OpenIconSpeedDial';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import FolderIcon from '@material-ui/icons/Folder';
-import DeleteIcon from '@material-ui/icons/Delete';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    maxWidth: 752,
-  },
-  demo: {
-    backgroundColor: 'white',
-  },
-  title: {
-    // margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 2}px`,
-  },
-}));
 
-function generate(element) {
-  return [0, 1, 2].map(value =>
-    React.cloneElement(element, {
-      key: value,
-    }),
-  );
+class Contacts extends Component {
+  constructor(){
+    super();
+    this.state = { 
+      listOfContacts: [],
+      open: false,
+      hidden: false,
+     };
 }
 
-function InteractiveList() {
-  const classes = useStyles();
-  const [dense, setDense] = React.useState(false);
-  const [secondary, setSecondary] = React.useState(false);
+getAllContacts = () =>{
+  axios.get(`http://localhost:5000/api/contacts`, {withCredentials:true})
+  .then(responseFromApi => {
+    this.setState({
+      listOfContacts: responseFromApi.data
+    })
+  })
+}
 
-  return (
-    <div className={classes.root}>
-      <FormGroup row>
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={dense}
-              onChange={event => setDense(event.target.checked)}
-              value="dense"
-            />
-          }
-          label="Enable dense"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={secondary}
-              onChange={event => setSecondary(event.target.checked)}
-              value="secondary"
-            />
-          }
-          label="Contact Details"
-        />
-      </FormGroup>
-      <Grid container spacing={16}>
-        
-        
-      </Grid>
-      <Grid container spacing={16}>
-        
-        <Grid item xs={12} md={6}>
-          <Typography variant="h6" className={classes.title}>
-            Contacts
-          </Typography>
-          <div className={classes.demo}>
-            <List dense={dense}>
-              {generate(
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <FolderIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary="Single-line item"
-                    secondary={secondary ? 'Secondary text' : null}
-                  />
-                  <ListItemSecondaryAction>
-                    <IconButton aria-label="Delete">
-                      <DeleteIcon />
-                    </IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>,
-              )}
+componentDidMount() {
+  this.getAllContacts();
+}
+  render() {
+
+    const { listOfContacts } = this.state;
+    
+    return (
+      <React.Fragment>
+        <Grid 
+          container
+          justify="center"
+          alignItems="center"
+          >
+          <Grid item xs={4}>
+            <List >
+            { listOfContacts.map((oneContact) => {
+                return(
+                  <ListItem 
+                    key={oneContact._id} 
+                    button
+                    divider
+                    >
+                    <ListItemAvatar>
+                      <Avatar alt='Profile Pic' src={oneContact.imageUrl} />
+                    </ListItemAvatar>
+                    <ListItemText 
+                      primary={oneContact.firstName} 
+                      secondary={ oneContact.lastName}
+                      />
+                    <ListItemSecondaryAction>
+                      <OpenIconSpeedDial/>
+                    </ListItemSecondaryAction>
+                  </ListItem> 
+                )
+              })}
             </List>
-          </div>
+          </Grid>
         </Grid>
-      </Grid>
-    </div>
-  );
+      </React.Fragment>
+    )
+  }
 }
 
-export default InteractiveList;
+export default Contacts;
+
+             

@@ -14,7 +14,7 @@ export class FormContactDetails extends Component {
 
   
   render() {
-    const { values, handleChange } = this.props;
+    const { values, handleChange, handlePhoneChange } = this.props;
     // console.log(values)
     return (
       <MuiThemeProvider>
@@ -36,9 +36,10 @@ export class FormContactDetails extends Component {
           <br/>
           <TextField 
             hintText='Cell Number'
-            floatingLabelText='+1954-555-4444'
-            onChange={handleChange('cellNumber')}
+            floatingLabelText='954-555-4444'
+            onChange={handlePhoneChange('cellNumber')}
             defaultValue={values.cellNumber}
+            maxLength="10"
           />
           <br/>
           <RaisedButton 
