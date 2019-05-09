@@ -8,11 +8,12 @@ import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 
 class OpenIconSpeedDial extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = { 
       open: false,
       hidden: false,
+      to: '',
      };
 }
 handleVisibility = () => {
@@ -23,8 +24,10 @@ handleVisibility = () => {
 };
 
 handleClick = () => {
+  console.log(this.state)
   this.setState(state => ({
     open: !state.open,
+   
   }));
 };
 
@@ -46,7 +49,7 @@ handleClose = () => {
     const { hidden, open } = this.state;
     const actions = [
       { icon: <CallIcon />, name: 'Call' },
-      { icon: <MessageIcon />, name: 'Text' },
+      { icon: <MessageIcon />, name: 'Text', href: "/sms/out" },
       { icon: <DeleteIcon />, name: 'Delete' ,  href: "/contacts/create"},
     ];
 

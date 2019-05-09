@@ -19,7 +19,6 @@ export class FormContactDetails extends Component {
     return (
       <MuiThemeProvider>
         <React.Fragment>
-          <br/>
           <TextField 
             hintText='Enter First Name'
             floatingLabelText='First Name'
@@ -44,7 +43,7 @@ export class FormContactDetails extends Component {
           <br/>
           <RaisedButton 
             label="Continue"
-            primary={true}
+            secondary={true}
             style={styles.button}
             onClick={this.continue}
           />

@@ -43,7 +43,7 @@ componentDidMount() {
           justify="center"
           alignItems="center"
           >
-          <Grid item xs={4}>
+          <Grid item xs={7} >
             <List >
             { listOfContacts.map((oneContact) => {
                 return(
@@ -60,7 +60,7 @@ componentDidMount() {
                       secondary={ oneContact.lastName}
                       />
                     <ListItemSecondaryAction>
-                      <OpenIconSpeedDial/>
+                      <OpenIconSpeedDial />
                     </ListItemSecondaryAction>
                   </ListItem> 
                 )

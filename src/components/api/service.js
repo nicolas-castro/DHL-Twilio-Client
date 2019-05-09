@@ -25,6 +25,15 @@ export default {
     return service.post('/contacts/create', newContact, {withCredentials:true})
       .then(res => res.data)
       .catch(errorHandler);
+  },
+
+  sendSMS (newSMS) {
+    console.log('new SMS is: ', newSMS);
+    return service.post('/sms/out', newSMS, {withCredentials:true})
+      .then(res => res.data)
+      .catch(errorHandler);
   }
+
+  
 }
 
