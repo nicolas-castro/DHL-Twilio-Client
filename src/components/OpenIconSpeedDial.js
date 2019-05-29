@@ -46,7 +46,7 @@ handleClose = () => {
 
   render() {
     const { cellNumber } = this.props;
-    console.log(cellNumber)
+    console.log('ljljljljljljlj: ', this.props)
     const { hidden, open, } = this.state;
     const actions = [
       { icon: <CallIcon />, name: 'Call' },

@@ -21,7 +21,7 @@ class Contacts extends Component {
 }
 
 getAllContacts = () =>{
-  axios.get(`http://localhost:5000/api/contacts`, {withCredentials:true})
+  axios.get(`${process.env.REACT_APP_API_URL}/contacts`, {withCredentials:true})
   .then(responseFromApi => {
     this.setState({
       listOfContacts: responseFromApi.data
