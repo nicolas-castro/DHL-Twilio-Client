@@ -50,6 +50,7 @@ class SMSForm extends Component {
 
   render() {
     const { to, body, step} = this.state;
+    const { defaultValue } = this.props;
     const values = { to, body }
     // eslint-disable-next-line default-case
     switch(step){
@@ -60,6 +61,7 @@ class SMSForm extends Component {
                   handleChange={this.handleChange}
                   handleSubmit={this.handleSubmit}
                   handlePhoneChange={this.handlePhoneChange}
+                  defaultValue={defaultValue}
                   values={values}
               />
       );

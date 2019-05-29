@@ -11,8 +11,7 @@ class SMSOutDetails extends Component {
   }
 
   render() {
-    const { values, handleChange, handlePhoneChange} = this.props;
-
+    const { values, cellNumber, handleChange, handlePhoneChange} = this.props;
     return (
       <MuiThemeProvider>
         <React.Fragment>
@@ -20,7 +19,7 @@ class SMSOutDetails extends Component {
             hintText='To Cell Number'
             floatingLabelText='954-555-4444'
             onChange={handlePhoneChange('to')}
-            defaultValue={values.to}
+            defaultValue={cellNumber}
             maxLength="10"
           />
           <br/>

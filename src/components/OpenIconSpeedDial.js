@@ -24,7 +24,6 @@ handleVisibility = () => {
 };
 
 handleClick = () => {
-  console.log(this.state)
   this.setState(state => ({
     open: !state.open,
    
@@ -46,11 +45,13 @@ handleClose = () => {
 };
 
   render() {
-    const { hidden, open } = this.state;
+    const { cellNumber } = this.props;
+    console.log(cellNumber)
+    const { hidden, open, } = this.state;
     const actions = [
       { icon: <CallIcon />, name: 'Call' },
-      { icon: <MessageIcon />, name: 'Text', href: "/sms/out" },
-      { icon: <DeleteIcon />, name: 'Delete' ,  href: "/contacts/create"},
+      { icon: <MessageIcon/>, name: 'Text', href: "/sms/out" },
+      { icon: <InfoIcon />, name: 'Edit' ,  href: "/contacts/create"},
     ];
 
     return (
@@ -58,7 +59,7 @@ handleClose = () => {
         <SpeedDial
           ariaLabel="Contact Options"
           hidden={hidden}
-          icon={<SpeedDialIcon openIcon={<InfoIcon />} />}
+          icon={<SpeedDialIcon/>}
           onBlur={this.handleClose}
           onClick={this.handleClick}
           onClose={this.handleClose}
@@ -68,20 +69,18 @@ handleClose = () => {
           open={open}
           direction="left"
           ButtonProps={{ color: "secondary" , size: "small" }}
-
-
         >
-          {actions.map((action) => {
 
-            return(
-            
+          {actions.map((action) => {
+            return( 
+  
             <SpeedDialAction
-              key={action.name}
               icon={action.icon}
               tooltipTitle={action.name}
               tooltipPlacement='bottom'
               onClick={this.handleClick}
               href={action.href}
+              defaultValue={cellNumber}
             />
           )})}
         </SpeedDial>

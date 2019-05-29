@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import AuthService from './Auth-service';
-import { Link } from 'react-router-dom'; 
+import { Redirect } from 'react-router-dom';
 
 
 class Signup extends Component {
   constructor(props){
     super(props);
-    this.state = { username: '', password: '', message: null };
+    this.state = { username: '', password: '', message: null , loggedInUser: null};
     this.service = new AuthService();
   }
 
@@ -19,6 +19,7 @@ class Signup extends Component {
         this.setState({
             username: "", 
             password: "",
+            loggedInUser: true,
         });
         this.props.getUser(response)
     })
@@ -35,25 +36,51 @@ class Signup extends Component {
     this.setState({[name]: value});
   }
   render(){
+    if(this.state.loggedInUser){
+      return <Redirect to='/contacts'/>
+    }
     return(
-      <div>
-        <form onSubmit={this.handleFormSubmit}>
-          <label>Username:</label>
-          <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
-          
-          <label>Password:</label>
-          <input type="password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
-          
-          <input type="submit" value="Signup" />
+      <div className="columns is-mobile is-centered" style={{ marginTop: '20px' }}>
+        <form onSubmit={this.handleFormSubmit}>     
+          <div className="field">
+            <p className="control has-icons-left has-icons-right">
+              <input name="username" className="input" type="text" 
+                     value={this.state.username} onChange={ e => this.handleChange(e)} 
+                     placeholder="username" />
+              <span className="icon is-small is-left">
+                <i className="fas fa-envelope" />
+              </span>
+              <span className="icon is-small is-right">
+                <i className="fas fa-check" />
+              </span>
+            </p>
+          </div>
+          <div className="field">
+            <p className="control has-icons-left">
+              <input className="input" type="password" 
+                     name="password" 
+                     value={this.state.password} onChange={ e => this.handleChange(e)}
+                     placeholder="Password" />
+              <span className="icon is-small is-left">
+                <i className="fas fa-lock" />
+              </span>
+            </p>
+          </div>
+          <div className="control is-centered columns is-mobile " style={{ marginTop: '20px' }}> 
+            <button className="button" 
+                    style={{ backgroundColor: '#FFCC01', color: 'white'}} 
+                    type="submit" 
+                    value="Signup" >
+                    SIGNUP
+            </button>
+          </div>       
         </form>
-  
-        <p>Already have account? 
-            <Link to={"/login"}> Login</Link>
-        </p>
         { this.state.message && <div> { this.state.message } </div> }
+
       </div>
     )
   }
 }
 
 export default Signup;
+

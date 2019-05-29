@@ -8,6 +8,7 @@ import Navbar from './components/navbar/NavBar';
 import CreateContact from './components/contact-form/CreateContact';
 import InteractiveList from './components/Contacts';
 import SMSForm from './components/chat/SMSForm'
+import HomePage from './components/home/LandingPage';
 
 
 class App extends Component {
@@ -62,10 +63,11 @@ class App extends Component {
       return (
         <div className="App">
           <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser}/>
+          <HomePage/>       
           <Switch>
               <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/>
               <Route exact path='/login' render={() => <Login getUser={this.getTheUser}/>}/>
-          </Switch>         
+          </Switch>  
       </div>
       );
     }

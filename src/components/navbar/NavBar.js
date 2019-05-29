@@ -84,14 +84,6 @@ class Navbar extends Component {
 
          <div id="navbarBasicExample" className={ this.state.isActive ? 'navbar-menu is-active' : 'navbar-menu'}>
               <div className="navbar-start">
-                
-                {/* <div className="navbar-item has-dropdown is-hoverable">
-                <Link className="navbar-link" to='/' >More</Link>
-                  <div className="navbar-dropdown ">
-                  <Link className="navbar-item" to='/contacts' >My Contacts</Link>
-                  <Link className="navbar-item" to='/' >Edit Profile</Link>           
-                  </div>
-                </div> */}
               </div>
               <div className="navbar-end">
                 <div className="navbar-item">

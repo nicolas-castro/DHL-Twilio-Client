@@ -44,13 +44,13 @@ componentDidMount() {
           alignItems="center"
           >
           <Grid item xs={7} >
-            <List >
+            <List>
             { listOfContacts.map((oneContact) => {
                 return(
                   <ListItem 
-                    key={oneContact._id} 
                     button
                     divider
+                    key={oneContact._id}
                     >
                     <ListItemAvatar>
                       <Avatar alt='Profile Pic' src={oneContact.imageUrl} />
@@ -59,8 +59,12 @@ componentDidMount() {
                       primary={oneContact.firstName} 
                       secondary={ oneContact.lastName}
                       />
-                    <ListItemSecondaryAction>
-                      <OpenIconSpeedDial />
+                    <ListItemSecondaryAction
+                    >
+                      <OpenIconSpeedDial 
+                      cellNumber={oneContact.cellNumber}  
+                      id={oneContact._id}
+                      />
                     </ListItemSecondaryAction>
                   </ListItem> 
                 )

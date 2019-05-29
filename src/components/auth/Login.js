@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import AuthService from './Auth-service';
-import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 
 
@@ -8,7 +7,7 @@ import { Redirect } from 'react-router-dom';
 class Login extends Component {
   constructor(props){
     super(props);
-    this.state = { username: '', password: '', loggedInUser: null };
+    this.state = { username: '', password: '', loggedInUser: null, message: null };
     this.service = new AuthService();
   }
 
@@ -20,7 +19,12 @@ class Login extends Component {
         this.setState({ username: "", password: "", loggedInUser: true });
         this.props.getUser(response);       
     })
-    .catch( error => console.log(error) )
+    .catch(err => {
+      if (err.response && err.response.data) {
+        // console.error("API response", err.response.data)
+        return  this.setState({ message: err.response.data.message }) 
+      }
+    });
   }
     
   handleChange = (event) => {  
@@ -60,16 +64,16 @@ class Login extends Component {
             </p>
           </div>
           <div className="control is-centered columns is-mobile " style={{ marginTop: '20px' }}> 
-            <button className="button is-primary " type="submit" value="Login" >Submit</button>
-          </div>      
-
-          <div>
-            <p>Don't have an account? 
-                <Link to={"/signup"}> Signup</Link>
-            </p>
-          </div>  
+            <button className="button" 
+                    style={{ backgroundColor: '#FFCC01', color: 'white'}} 
+                    type="submit" 
+                    value="Login" >
+                    LOGIN
+            </button>
+          </div>       
         </form>
-        
+
+        { this.state.message && <div> { this.state.message } </div> }
       </div>
     )
   }
