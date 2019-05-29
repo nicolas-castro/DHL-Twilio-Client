@@ -34,7 +34,7 @@ class Login extends Component {
     
   render(){
     if(this.state.loggedInUser){
-      return <Redirect to='/contacts'/>
+      return <Redirect to='/contacts/create'/>
     }
     return(
       <div className="columns is-mobile is-centered" style={{ marginTop: '20px' }}>

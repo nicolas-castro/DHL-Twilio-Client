@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import service from '../api/service';
 import SMSOutDetails from './SMSOutDetails';
 import { Redirect } from 'react-router-dom';
+import RaisedButton from 'material-ui/RaisedButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
 class SMSForm extends Component {
@@ -67,11 +69,28 @@ class SMSForm extends Component {
       );
       case 2:
           return(
-              <h1>SMS SENT</h1>
+            <MuiThemeProvider>
+              <React.Fragment>
+                <h1>Message Sent</h1>
+                <RaisedButton 
+                  label="Continue"
+                  secondary={true}
+                  style={styles.button}
+                  onClick={this.nextStep}
+                />
+              </React.Fragment>
+            </MuiThemeProvider>
+
           )
       case 3:
       return <Redirect to='/contacts'/>
     }
+  }
+}
+
+const styles ={
+  button: {
+    margin: 15
   }
 }
 
